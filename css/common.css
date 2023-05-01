@@ -1,11 +1,10 @@
-@charset "UTF-8"; 
-@import url('https://fonts.googleapis.com/css2?family=Days+One&family=Noto+Sans+KR:wght@400;700&display=swap');
-
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap');
 
 * {
     padding: 0;
     margin: 0;
-    box-sizing: border-box;
+    box-sizing: border-box;  
 }
 
 ul {
@@ -30,20 +29,22 @@ body {
     align-items: center;
     justify-content: space-between;
     padding: 0 20px;
+    height: 80px;
+    position: relative;
 }
 
 .logo {
     font-size: 20px;
     font-weight: 700;
     position: relative;
-    margin-left: 16px;
+    margin-left: 16px;    
 }
 
 .logo::before {
     content: '';
     position: absolute;
     top: 0;
-    left: -10px;
+    left: -12px;
     width: 34px;
     height: 34px;
     background-color: #ccc;
@@ -51,7 +52,9 @@ body {
     z-index: -1;
 }
 
+
 .header .bars {
+    font-size: 32px;
     display: none;
 }
 
@@ -61,15 +64,41 @@ body {
 }
 
 .gnb li a {
-    height: 80px;
     display: block;
+    height: 80px;
     line-height: 80px;
     text-align: center;
     padding: 0 40px;
 }
 
+.gnb li a:hover {
+    color: tomato;
+}
+
+
+.gnb li a span {
+    display: block;
+    position: relative;
+}
+
+.gnb li a span::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: tomato;
+    width: 0;
+    height: 3px;
+    transition: 0.3s;
+}
+
+.gnb li a:hover span::after {
+    width: 100%;
+  
+}
+
 .container {
-    width: 1100px;
+    max-width: 1100px;
     margin: 0 auto;
     padding: 0 10px;
 }
@@ -78,12 +107,19 @@ body {
     width: 100%;
 }
 
+/* hero */
 .hero {
     /* background-color: red; */
     display: flex;
-    align-items: center;
+    align-items: center; 
     justify-content: space-between;
     padding: 110px 0;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.hero img {
+    width: 100%;
 }
 
 .hero .text_box {
@@ -106,15 +142,15 @@ body {
     width: 80%;
 }
 
-.hero .photo {
-    width: 500px;
-    position: relative;
+.hero .photo {   
+    width: 500px;  
+    position: relative;  
 }
 
 .hero .photo img {
     display: block;
     border-radius: 100%;
-    border-top-right-radius: 0;
+    border-top-right-radius: 0;    
 }
 
 .hero .photo::after {
@@ -127,13 +163,13 @@ body {
     background-color: #bdffff;
     z-index: -1;
     border-radius: 100%;
-    border-top-right-radius: 0;
+    border-top-right-radius: 0;  
 }
 
+/* skills */
 .skills {
     display: flex;
     align-items: center;
-
 }
 
 .skills .item {
@@ -148,13 +184,13 @@ body {
     margin: 0 auto;
 }
 
-.skills .item .h3 {
+.skills .item h3 {
     font-size: 27px;
     font-weight: 700;
     margin: 60px 0 40px;
 }
 
-.skills .item .p {
+.skills .item p {
     font-size: 17px;
 }
 
@@ -172,7 +208,7 @@ body {
 
 .works ul {
     display: grid;
-    grid-template-columns: repeat(3,1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 45px;
 }
 
@@ -187,6 +223,7 @@ body {
     object-fit: cover;
 }
 
+
 .works ul li .title {
     padding: 20px 0 16px;
     display: flex;
@@ -200,5 +237,90 @@ body {
 }
 
 .works ul li .title p {
-    font-style: 17px;
+    font-size: 17;
+}
+
+@media (max-width: 576px) {
+    .gnb {
+        flex-direction: column;
+        position: fixed;
+        top: 0;
+        left: 100%;
+        background-color: #fff;
+        width: 100%;
+        height: 100vh;
+        padding-top: 120px;
+        transition: all 0.5s;
+    }
+
+    .gnb.active {
+        left: 0;
+    }
+    
+    .gnb li a {
+        height: 100px;
+        line-height: 100px;
+        padding: 0 60px;
+        font-size: 24px;
+    }
+
+    .header .bars {   
+        display: block;    
+        position: fixed;
+        top: 18px;
+        right: 18px;              
+        z-index: 1;
+    }
+
+
+    /* hero */
+    .hero {
+        padding: 0;
+        flex-direction: column-reverse;
+        gap: 44px;
+        margin-bottom: 60px;
+    }
+
+    .hero .text_box {
+        text-align: center;
+    }
+    
+    .hero .text_box h2 {
+        margin: 30px 0;
+        font-size: 48px;
+    }
+    
+    .hero .text_box p {
+        font-size: 15px;
+        width: initial;
+        padding: 0 20px;
+    }
+    
+    .hero .photo {   
+        width: initial;  
+        position: initial;  
+    }
+    
+    .hero .photo img {
+        border-radius: 0;
+    }
+    
+    .hero .photo::after {
+        display: none;
+    }
+
+    /* skills */
+    .skills {      
+        flex-wrap: wrap;
+    }
+
+    .skills .item {
+        padding: 60px 50px;       
+    }
+
+    /* works */
+    .works ul {       
+        grid-template-columns: repeat(1, 1fr);
+        gap: 45px;
+    }    
 }
